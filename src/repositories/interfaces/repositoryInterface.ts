@@ -22,7 +22,7 @@ export interface Sort {
   [key: string]: 1 | -1;
 }
 
-export default interface IRepository<T> {
+export default interface RepositoryInterface<T> {
   /**
    * Receives an ID and fetch data from database by an objectID
    * @param Id of the document

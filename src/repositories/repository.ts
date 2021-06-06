@@ -1,6 +1,6 @@
 import { injectable } from 'tsyringe';
 import { Collection, FilterQuery, ObjectID } from 'mongodb';
-import IRepository, { Select, Sort } from './interfaces/repositoryInterface';
+import RepositoryInterface, { Select, Sort } from './interfaces/repositoryInterface';
 import database from './database';
 
 /**
@@ -8,7 +8,7 @@ import database from './database';
  * May need to rewrite this.
  */
 @injectable()
-export default class Repository<T> implements IRepository<T> {
+export default class Repository<T> implements RepositoryInterface<T> {
   private readonly collection: Collection;
 
   constructor(collection: string) {

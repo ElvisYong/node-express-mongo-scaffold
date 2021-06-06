@@ -8,11 +8,5 @@ export default async ({ expressApp }) => {
     await database.connect();
   }
 
-  // Example model
-  // const yourModel = {
-  //   name: 'yourModel'
-  //   model: require('../models/yourModel').default
-  // }
-
   await expressLoader({ app: expressApp });
 };

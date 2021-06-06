@@ -1,5 +1,6 @@
 import { MongoClient, Db, Collection } from 'mongodb';
 import config from '../config';
+import Logger from '../loaders/logger';
 
 // This will do all the connection related stuff.
 class Database {
@@ -13,19 +14,15 @@ class Database {
 
   public async connect(): Promise<void> {
     if (this.dbClient) {
-      console.log('Connection already exists');
+      Logger.error('Connection already exists');
     }
 
-    try {
-      const client = new MongoClient(this.connectionUri, {
-        useUnifiedTopology: true,
-      });
-      this.dbClient = await client.connect();
-      this.databaseInstance = this.dbClient.db('LunchieM0');
-      console.log('database connected');
-    } finally {
-      this.dbClient.close();
-    }
+    const client = new MongoClient(this.connectionUri, {
+      useUnifiedTopology: true,
+    });
+    this.dbClient = await client.connect();
+    this.databaseInstance = this.dbClient.db('LunchieM0');
+    Logger.info('database connected');
   }
 
   public async disconnect() {
